@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <pthread.h>
 #include <unistd.h>
 
 /* Defines. */
@@ -1091,8 +1092,8 @@ static int thread_find ()
 /* At the end of the program, free thread memory. */
 static void thread_free ()
 {
-  pthread_mutex_destroy (thr_lock, NULL);
-  pthread_cond_destroy (thr_cond, NULL);
+  pthread_mutex_destroy (thr_lock);
+  pthread_cond_destroy (thr_cond);
   int i;
   for (i = 0; i < max_threads; i++)
     {
